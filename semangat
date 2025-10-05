@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCAPAN SELAMAT UJIAN</title>
+    <!-- CDN untuk Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        /* Tema Biru Utama */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #007BFF, #0056B3); /* Gradient biru */
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative; /* Untuk confetti canvas */
+            overflow: hidden; /* Agar confetti tidak keluar layar */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan untuk kontras */
+            color: #FFD700; /* Kuning emas untuk judul agar menonjol */
+            z-index: 10; /* Agar di atas confetti */
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .audio-container {
+            margin-top: 20px;
+            z-index: 10;
+        }
+
+        .confetti-btn {
+            background-color: #28a745; /* Hijau untuk tombol confetti agar beda dari biru */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .confetti-btn:hover {
+            background-color: #218838;
+        }
+
+        button {
+            background-color: #007BFF; /* Biru utama */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056B3; /* Biru lebih gelap saat hover */
+        }
+
+        audio {
+            margin-top: 10px;
+            width: 300px;
+        }
+
+        /* Responsif untuk mobile */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            /* Kurangi confetti di mobile agar tidak lag */
+            .confetti-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉SEMANGAT NGERJAIN UJIANNYA ARIFA! 🎉</h1>
+    <p>Semoga Mendapatkan Nilai Bagus jangan Main Roblox Mulu Tapi Kalo ga Main Aku Ga Ada HTS alias Hanya Teman Summit wkwkwk! Kamu pasti bisa!</p>
+    
+    <div class="audio-container">
+        <button class="confetti-btn" onclick="throwConfettiFull()">🎊 Lempar Confetti Seluruh Layar!</button>
+        <br>
+        <button onclick="toggleAudio()">▶️ Putar Audio Selamat</button>
+        <audio id="myAudio" src="multimedia/rekaman.mp3" loop> <!-- Contoh audio gratis; ganti dengan file Anda -->
+            Browser Anda tidak mendukung audio HTML5.
+        </audio>
+    </div>
+
+    <script>
+        const audio = document.getElementById('myAudio');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                document.querySelector('button[onclick="toggleAudio()"]').innerHTML = '▶️ Putar Audio Selamat';
+            } else {
+                audio.play();
+                isPlaying = true;
+                document.querySelector('button[onclick="toggleAudio()"]').innerHTML = '⏸️ Pause Audio';
+            }
+        }
+
+        // Fungsi untuk melempar confetti yang menutupi SELURUH LAYAR
+        function throwConfettiFull() {
+            const colors = ['#007BFF', '#0056B3', '#FFD700', '#FFFFFF', '#4CAF50', '#FFEB3B']; // Dominan biru + variasi
+
+            // Semburan 1: Dari kiri atas
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { x: 0.2, y: 0.2 },
+                colors: colors,
+                angle: 45,
+                startVelocity: 50,
+                decay: 0.9,
+                gravity: 1,
+                ticks: 300,
+                zIndex: 0,
+                scalar: 1.2
+            });
+
+            // Semburan 2: Dari kanan atas
+            confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { x: 0.8, y: 0.2 },
+                colors: colors,
+                angle: -45,
+                startVelocity: 50,
+                decay: 0.9,
+                gravity: 1,
+                ticks: 300,
+                zIndex: 0,
+                scalar: 1.2
+            });
+
+            // Semburan 3: Dari tengah bawah (naik ke atas)
+            confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: { x: 0.5, y: 0.8 },
+                colors: colors,
+                angle: 90, // Menuju atas
+                startVelocity: 40,
+                decay: 0.9,
+                gravity: -0.5, // Gravity negatif agar naik
+                ticks: 300,
+                zIndex: 0,
+                scalar: 1.2
+            });
+
+            // Semburan 4: Dari tengah (merata)
+            confetti({
+                particleCount: 150,
+                spread: 360, // Spread penuh 360 derajat
+                origin: { x: 0.5, y: 0.5 },
+                colors: colors,
+                startVelocity: 30,
+                decay: 0.9,
+                gravity: 1,
+                ticks: 300,
+                zIndex: 0,
+                scalar: 1.5
+            });
+        }
+
+        // Auto-throw confetti penuh saat halaman dimuat
+        window.addEventListener('load', function() {
+            throwConfettiFull();
+        });
+
+        // Auto-play audio opsional (browser mungkin blokir)
+        // audio.play().catch(e => console.log('Autoplay diblokir'));
+    </script>
+</body>
+</html>
+ml>
